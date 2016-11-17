@@ -1,0 +1,17 @@
+$underline-style: underline;
+$background-color: #CF649A;
+
+@mixin sass-styled {
+    color: #CF649A;
+    font-size: large;
+    content: " You're styled!";
+}
+
+#underlined-heading {
+    text-decoration: $underline-style;
+    background-color: $background-color;
+}
+
+#test-sass:after {
+    @include sass-styled;
+}
