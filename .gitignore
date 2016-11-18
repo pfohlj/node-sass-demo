@@ -48,3 +48,4 @@ jspm_packages
 
 # VS Code Launch file
 launch.json
+.vscode

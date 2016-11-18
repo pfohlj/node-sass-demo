@@ -1,46 +1,45 @@
 var express = require('express');
 var sass = require('node-sass');
 var fs = require('fs');
+
 var app = express();
 
 app.get('/', function(req, res) {
     // set options for compiling .scss file
-    var in_file = __dirname + '/index.scss';
-    var out_file = __dirname + '/index.css';
+    var in_file = __dirname + '/test.scss';
+    var out_file = __dirname + '/test.css';
 
-    // render the scss file and write to disk
+    // compile the .scss file using sass's render method
     sass.render({
         file: in_file,
         outFile: out_file,
     }, function(error, result) {
-        if(!error) {
+        if (!error) {
             fs.writeFile(out_file, result.css, function(err) {
-                if(!err) {
-                    console.log("Compiled and written to disc successfully.");
+                if (!err) {
+                    console.log("Sass compiled and written to file.");
                 } else {
-                    console.log("Your file compiled but could not be written to disc.")
+                    console.log("File compiled, but could not write to disc.    ");
                 }
             });
         } else {
-            console.log('There was a problem compiling your file.');
+            console.log('There was a problem with compilation.');
         }
     });
 
-    // set options for sending index file
     var options = {
-        root: __dirname + ''
+        root: __dirname + '',
     };
 
     res.sendFile('index.html', options);
 });
 
-app.get('/index.css', function(req, res) {
-    
+app.get('/style.css', function(req, res) {
     var options = {
         root: __dirname + ''
     };
 
-    res.sendFile('index.css', options);
+    res.sendFile('style.css', options);
 });
 
 app.listen(8080, function() {
