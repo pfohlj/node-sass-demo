@@ -34,12 +34,12 @@ app.get('/', function(req, res) {
     res.sendFile('index.html', options);
 });
 
-app.get('/style.css', function(req, res) {
+app.get('/test.css', function(req, res) {
     var options = {
         root: __dirname + ''
     };
 
-    res.sendFile('style.css', options);
+    res.sendFile('test.css', options);
 });
 
 app.listen(8080, function() {
